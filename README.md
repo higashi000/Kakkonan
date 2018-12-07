@@ -2,6 +2,9 @@
 
 ## Brackets completion of Vim
 
+## 注意
+2018/12/8現在正しく動かないです。
+
 ## 使い方
 `$ git clone https://github.com/higashi000/Kakkonan`<br>
 を実行後、任意のフォルダにKakkonanを配置してください。<br>
