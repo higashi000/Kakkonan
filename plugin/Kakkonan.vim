@@ -6,7 +6,7 @@ inoremap <expr> { Completion('{')
 inoremap <expr> [ Completion('[')
 inoremap <expr> " Completion('"')
 inoremap <expr> ' Completion("'")
-inoremap <expr> <space> Completion(' ')
+""inoremap <expr> <space> Completion(' ')
 
 function! Completion(compObject)
   if (a:compObject == '(')
