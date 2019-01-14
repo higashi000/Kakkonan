@@ -7,15 +7,16 @@ inoremap <expr> \{ Completion('\{')
 inoremap <expr> [ Completion('[')
 inoremap <expr> " Completion('"')
 inoremap <expr> ' Completion("'")
+"inoremap <CR> <CR><C-o><S-o><TAB>
 
-function! Completion()
+function! Completion(inputObject)
   let canComp = ['(', '{', '[', '"', "'",]
   let compObject = [')', '}', ']', '"', "'"]
   let nowArrayPos = 0
 
   for e in canComp
-    if e == inputObject
-      return inputObject.compObject[nowArrayPos]."\<left>"
+    if e == a:inputObject
+      return a:inputObject.compObject[nowArrayPos]."\<left>"
     endif
     let nowArrayPos += 1
   endfor
