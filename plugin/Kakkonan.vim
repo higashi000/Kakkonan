@@ -14,8 +14,8 @@ function! Completion(inputObject)
   let compObject = [')', '}', ']', '"', "'"]
   let nowArrayPos = 0
 
-  for e in canComp
-    if e == a:inputObject
+  for i in canComp
+    if i == a:inputObject
       return a:inputObject.compObject[nowArrayPos]."\<left>"
     endif
     let nowArrayPos += 1
@@ -23,14 +23,10 @@ function! Completion(inputObject)
 endfunction
 
 function! InputEnter()
-  let cursolLine = line(".")
-  let cursolCol = col(".")
+  let cursorStr = getline('.')
+  let cursorCol = col('.')
 
-  :call cursor(cursolLine, cursolCol - 1)
-
-  let leftChar = getline('.')[col('.')-1]
-
-  if (leftChar == '{')
+  if (cursorStr[cursorCol - 2] == '{')
     return "\<CR>\<C-o>\<S-o>"
   endif
 
