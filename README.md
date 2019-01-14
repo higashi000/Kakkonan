@@ -10,5 +10,3 @@ Please write toml file
 [[plugins]]
 repo = 'higashi000/Kakkonan'
 ```
-
-[Japanese README](./Japanese.md)
