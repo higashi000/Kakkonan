@@ -1,11 +1,14 @@
 # Kakkonan
 
-## Brackets completion of Vim
+This is Vim and Neovim bracket complement plugin.
 
-## 注意
-2018/12/8現在正しく動かないです。
 
-## 使い方
-`$ git clone https://github.com/higashi000/Kakkonan`<br>
-を実行後、任意のフォルダにKakkonanを配置してください。<br>
-その後、`.vimrc`に`Kakkonan/Kakkonan.vim`へのPATHを読み込ませてください。
+## Installation
+If you are using dein.
+Please write toml file
+```
+[[plugins]]
+repo = 'higashi000/Kakkonan'
+```
+
+[Japanese README](./Japanese.md)
