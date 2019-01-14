@@ -7,7 +7,7 @@ inoremap <expr> \{ Completion('\{')
 inoremap <expr> [ Completion('[')
 inoremap <expr> " Completion('"')
 inoremap <expr> ' Completion("'")
-"inoremap <CR> <CR><C-o><S-o><TAB>
+inoremap <expr> <CR> InputEnter()
 
 function! Completion(inputObject)
   let canComp = ['(', '{', '[', '"', "'",]
@@ -20,6 +20,21 @@ function! Completion(inputObject)
     endif
     let nowArrayPos += 1
   endfor
+endfunction
+
+function! InputEnter()
+  let cursolLine = line(".")
+  let cursolCol = col(".")
+
+  :call cursor(cursolLine, cursolCol - 1)
+
+  let leftChar = getline('.')[col('.')-1]
+
+  if (leftChar == '{')
+    return "\<CR>\<C-o>\<S-o>"
+  endif
+
+  return "\<CR>"
 endfunction
 
 let &cpo = s:save_cpo
