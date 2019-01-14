@@ -3,23 +3,22 @@ set cpo&vim
 
 inoremap <expr> ( Completion('(')
 inoremap <expr> { Completion('{')
+inoremap <expr> \{ Completion('\{')
 inoremap <expr> [ Completion('[')
 inoremap <expr> " Completion('"')
 inoremap <expr> ' Completion("'")
-""inoremap <expr> <space> Completion(' ')
 
-function! Completion(compObject)
-  if (a:compObject == '(')
-    return "()\<left>"
-  elseif (a:compObject == '{')
-    return "{}\<left>"
-  elseif (a:compObject == '[')
-    return "[]\<left>"
-  elseif (a:compObject == '"')
-    return a:compObject.a:compObject."\<left>"
-  elseif (a:compObject == "'")
-    return "''\<left>"
-  endif
+function! Completion()
+  let canComp = ['(', '{', '[', '"', "'",]
+  let compObject = [')', '}', ']', '"', "'"]
+  let nowArrayPos = 0
+
+  for e in canComp
+    if e == inputObject
+      return inputObject.compObject[nowArrayPos]."\<left>"
+    endif
+    let nowArrayPos += 1
+  endfor
 endfunction
 
 let &cpo = s:save_cpo
