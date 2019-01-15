@@ -8,6 +8,14 @@ inoremap <expr> [ Completion('[')
 inoremap <expr> " Completion('"')
 inoremap <expr> ' Completion("'")
 inoremap <expr> <CR> InputEnter()
+inoremap <expr> <BS> DeleteChar()
+
+function! GetCursorChar(diff)
+  let cursorStr = getline('.')
+  let cursorCol = col('.')
+
+  return cursorStr[cursorCol + a:diff]
+endfunction
 
 function! Completion(inputObject)
   let canComp = ['(', '{', '[', '"', "'",]
@@ -23,14 +31,33 @@ function! Completion(inputObject)
 endfunction
 
 function! InputEnter()
-  let cursorStr = getline('.')
-  let cursorCol = col('.')
+  let cursorChar = GetCursorChar(-2)
 
-  if (cursorStr[cursorCol - 2] == '{')
+  if (cursorChar == '{')
     return "\<CR>\<C-o>\<S-o>"
   endif
 
   return "\<CR>"
+endfunction
+
+function! DeleteChar()
+  let leftDelete = ['(', '{', '[', "'", '"']
+  let rightDelete = [')', '}', ']', "'", '"']
+
+  let cursorLeftChar = GetCursorChar(-2)
+  let cursorRightChar = GetCursorChar(-1)
+
+  let tmp = 0
+  for i in leftDelete
+    if i == cursorLeftChar
+      if cursorRightChar == rightDelete[tmp]
+        return "\<BS>\<right>\<BS>"
+      endif
+    endif
+    let tmp += 1
+  endfor
+
+  return "\<BS>"
 endfunction
 
 let &cpo = s:save_cpo
