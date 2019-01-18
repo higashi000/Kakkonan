@@ -1,7 +1,7 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! Kakkonan#GetCursorChar(diff)
+function! GetCursorChar(diff)
   let cursorStr = getline('.')
   let cursorCol = col('.')
 
