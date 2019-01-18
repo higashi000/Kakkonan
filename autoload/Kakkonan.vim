@@ -52,5 +52,25 @@ function! Kakkonan#DeleteChar()
   return "\<BS>"
 endfunction
 
+function! Kakkonan#InputSpace()
+  let leftChar = ['(', '{', '[', '"', "'"]
+  let rightChar = [')', '}', ']', '"', "'"]
+
+  let cursorLeftChar = GetCursorChar(-2)
+  let cursorRightChar = GetCursorChar(-1)
+
+  let tmp = 0
+  for i in leftChar
+    if i == cursorLeftChar
+      if cursorRightChar == rightChar[tmp]
+        return "  \<left>"
+      endif
+    endif
+    let tmp += 1
+  endfor
+
+  return " "
+endfunction
+
 let &cpo = s:save_cpo
 unlet s:save_cpo

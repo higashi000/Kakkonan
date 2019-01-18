@@ -7,6 +7,7 @@ inoremap <expr> \{ Kakkonan#Completion('\{')
 inoremap <expr> [ Kakkonan#Completion('[')
 inoremap <expr> " Kakkonan#Completion('"')
 inoremap <expr> ' Kakkonan#Completion("'")
+inoremap <expr> <space> Kakkonan#InputSpace()
 inoremap <expr> <CR> Kakkonan#InputEnter()
 inoremap <expr> <BS> Kakkonan#DeleteChar()
 
