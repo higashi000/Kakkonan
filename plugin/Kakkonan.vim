@@ -1,14 +1,14 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-inoremap <expr> ( Completion('(')
-inoremap <expr> { Completion('{')
-inoremap <expr> \{ Completion('\{')
-inoremap <expr> [ Completion('[')
-inoremap <expr> " Completion('"')
-inoremap <expr> ' Completion("'")
-inoremap <expr> <CR> InputEnter()
-inoremap <expr> <BS> DeleteChar()
+inoremap <expr> ( Kakkonan#Completion('(')
+inoremap <expr> { Kakkonan#Completion('{')
+inoremap <expr> \{ Kakkonan#Completion('\{')
+inoremap <expr> [ Kakkonan#Completion('[')
+inoremap <expr> " Kakkonan#Completion('"')
+inoremap <expr> ' Kakkonan#Completion("'")
+inoremap <expr> <CR> Kakkonan#InputEnter()
+inoremap <expr> <BS> Kakkonan#DeleteChar()
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
