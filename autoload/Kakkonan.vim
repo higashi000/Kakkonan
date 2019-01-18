@@ -1,14 +1,14 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! GetCursorChar(diff)
+function! Kakkonan#GetCursorChar(diff)
   let cursorStr = getline('.')
   let cursorCol = col('.')
 
   return cursorStr[cursorCol + a:diff]
 endfunction
 
-function! Completion(inputObject)
+function! Kakkonan#Completion(inputObject)
   let canComp = ['(', '{', '[', '"', "'"]
   let compObject = [')', '}', ']', '"', "'"]
   let nowArrayPos = 0
@@ -22,7 +22,7 @@ function! Completion(inputObject)
 
 endfunction
 
-function! InputEnter()
+function! Kakkonan#InputEnter()
   let cursorChar = GetCursorChar(-2)
 
   if (cursorChar == '{')
@@ -32,7 +32,7 @@ function! InputEnter()
   return "\<CR>"
 endfunction
 
-function! DeleteChar()
+function! Kakkonan#DeleteChar()
   let leftDelete = ['(', '{', '[', "'", '"']
   let rightDelete = [')', '}', ']', "'", '"']
 
