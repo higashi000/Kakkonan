@@ -32,10 +32,6 @@ function! Kakkonan#InputEnter()
   return "\<CR>"
 endfunction
 
-function! Kakkonan#NotCompletion(inputObject)
-  return a:inputObject
-endfunction
-
 function! Kakkonan#DeleteChar()
   let leftDelete = ['(', '{', '[', "'", '"']
   let rightDelete = [')', '}', ']', "'", '"']
