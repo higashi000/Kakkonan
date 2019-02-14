@@ -32,22 +32,42 @@ function! Kakkonan#InputEnter()
   return "\<CR>"
 endfunction
 
+function! Kakkonan#NotCompletion(inputObject)
+  return a:inputObject
+endfunction
+
 function! Kakkonan#DeleteChar()
   let leftDelete = ['(', '{', '[', "'", '"']
   let rightDelete = [')', '}', ']', "'", '"']
 
-  let cursorLeftChar = GetCursorChar(-2)
-  let cursorRightChar = GetCursorChar(-1)
+  let nowCursorChar = GetCursorChar(-1)
 
   let tmp = 0
-  for i in leftDelete
-    if i == cursorLeftChar
-      if cursorRightChar == rightDelete[tmp]
-        return "\<BS>\<right>\<BS>"
+
+  if nowCursorChar == " "
+    let cursorLeftChar = GetCursorChar(-1)
+    let cursorRightChar = GetCursorChar(0)
+
+    for i in leftDelete
+      if i == cursorLeftChar
+        if cursorRightChar == rightDelete[tmp]
+          return "\<BS>\<right>\<BS>"
+        endif
       endif
-    endif
-    let tmp += 1
-  endfor
+    endfor
+  else
+    let cursorLeftChar = GetCursorChar(-2)
+    let cursorRightChar = GetCursorChar(-1)
+
+    for i in leftDelete
+      if i == cursorLeftChar
+        if cursorRightChar == rightDelete[tmp]
+          return "\<BS>\<right>\<BS>"
+        endif
+      endif
+      let tmp += 1
+    endfor
+  endif
 
   return "\<BS>"
 endfunction
