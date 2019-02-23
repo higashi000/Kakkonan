@@ -22,6 +22,10 @@ function! Kakkonan#Completion(inputObject)
 
 endfunction
 
+function! Kakkonan#NotCompletion(inputObject)
+  return a:inputObject[1]
+endfunction
+
 function! Kakkonan#InputEnter()
   let cursorChar = GetCursorChar(-2)
 
