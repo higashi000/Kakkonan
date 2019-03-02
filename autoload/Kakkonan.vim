@@ -28,8 +28,17 @@ endfunction
 
 function! Kakkonan#InputEnter()
   let cursorChar = GetCursorChar(-2)
+  let cursorRightChar = GetCursorChar(-1)
 
-  if (cursorChar == '{')
+  if (cursorChar == '{' && cursorRightChar == '}')
+    return "\<CR>\<C-o>\<S-o>"
+  elseif (cursorChar == '(' && cursorRightChar == ')')
+    return "\<CR>\<C-o>\<S-o>"
+  elseif (cursorChar == '[' && cursorRightChar == ']')
+    return "\<CR>\<C-o>\<S-o>"
+  elseif (cursorChar == '"' && cursorRightChar == '"')
+    return "\<CR>\<C-o>\<S-o>"
+  elseif (cursorChar == "'" && cursorRightChar == "'")
     return "\<CR>\<C-o>\<S-o>"
   endif
 
