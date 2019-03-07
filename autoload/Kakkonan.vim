@@ -9,8 +9,8 @@ function! GetCursorChar(diff)
 endfunction
 
 function! Kakkonan#Completion(inputObject)
-  let canComp = ['(', '{', '[', '"', "'"]
-  let compObject = [')', '}', ']', '"', "'"]
+  let canComp = ['(', '{', '[', '"', "'", "`"]
+  let compObject = [')', '}', ']', '"', "'", "`"]
   let nowArrayPos = 0
 
   for i in canComp
@@ -40,14 +40,16 @@ function! Kakkonan#InputEnter()
     return "\<CR>\<C-o>\<S-o>"
   elseif (cursorChar == "'" && cursorRightChar == "'")
     return "\<CR>\<C-o>\<S-o>"
+  elseif (cursorChar == "`" && cursorRightChar == "`")
+    return "\<CR>\<C-o>\<S-o>"
   endif
 
   return "\<CR>"
 endfunction
 
 function! Kakkonan#DeleteChar()
-  let leftDelete = ['(', '{', '[', "'", '"']
-  let rightDelete = [')', '}', ']', "'", '"']
+  let leftDelete = ['(', '{', '[', "'", '"', "`"]
+  let rightDelete = [')', '}', ']', "'", '"', "`"]
 
   let nowCursorChar = GetCursorChar(-1)
 
@@ -82,8 +84,8 @@ function! Kakkonan#DeleteChar()
 endfunction
 
 function! Kakkonan#InputSpace()
-  let leftChar = ['(', '{', '[', '"', "'"]
-  let rightChar = [')', '}', ']', '"', "'"]
+  let leftChar = ['(', '{', '[', '"', "'", "`"]
+  let rightChar = [')', '}', ']', '"', "'", "`"]
 
   let cursorLeftChar = GetCursorChar(-2)
   let cursorRightChar = GetCursorChar(-1)
