@@ -1,7 +1,7 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! GetCursorChar(diff)
+function! s:getCursorChar(diff)
   let cursorStr = getline('.')
   let cursorCol = col('.')
 
@@ -27,8 +27,8 @@ function! Kakkonan#NotCompletion(inputObject)
 endfunction
 
 function! Kakkonan#InputEnter()
-  let cursorChar = GetCursorChar(-2)
-  let cursorRightChar = GetCursorChar(-1)
+  let cursorChar = s:getCursorChar(-2)
+  let cursorRightChar = s:getCursorChar(-1)
 
   if (cursorChar == '{' && cursorRightChar == '}')
     return "\<CR>\<C-o>\<S-o>"
@@ -51,13 +51,13 @@ function! Kakkonan#DeleteChar()
   let leftDelete = ['(', '{', '[', "'", '"', "`"]
   let rightDelete = [')', '}', ']', "'", '"', "`"]
 
-  let nowCursorChar = GetCursorChar(-1)
+  let nowCursorChar = s:getCursorChar(-1)
 
   let tmp = 0
 
   if nowCursorChar == " "
-    let cursorLeftChar = GetCursorChar(-1)
-    let cursorRightChar = GetCursorChar(0)
+    let cursorLeftChar = s:getCursorChar(-1)
+    let cursorRightChar = s:getCursorChar(0)
 
     for i in leftDelete
       if i == cursorLeftChar
@@ -67,8 +67,8 @@ function! Kakkonan#DeleteChar()
       endif
     endfor
   else
-    let cursorLeftChar = GetCursorChar(-2)
-    let cursorRightChar = GetCursorChar(-1)
+    let cursorLeftChar = s:getCursorChar(-2)
+    let cursorRightChar = s:getCursorChar(-1)
 
     for i in leftDelete
       if i == cursorLeftChar
@@ -87,8 +87,8 @@ function! Kakkonan#InputSpace()
   let leftChar = ['(', '{', '[', '"', "'", "`"]
   let rightChar = [')', '}', ']', '"', "'", "`"]
 
-  let cursorLeftChar = GetCursorChar(-2)
-  let cursorRightChar = GetCursorChar(-1)
+  let cursorLeftChar = s:getCursorChar(-2)
+  let cursorRightChar = s:getCursorChar(-1)
 
   let tmp = 0
   for i in leftChar
