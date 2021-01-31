@@ -8,7 +8,7 @@ function! s:getCursorChar(diff)
   return cursorStr[cursorCol + a:diff]
 endfunction
 
-function! Kakkonan#Completion(inputObject)
+function! kakkonan#Completion(inputObject)
   let canComp = ['(', '{', '[', '"', "'", "`"]
   let compObject = [')', '}', ']', '"', "'", "`"]
   let nowArrayPos = 0
@@ -22,11 +22,11 @@ function! Kakkonan#Completion(inputObject)
 
 endfunction
 
-function! Kakkonan#NotCompletion(inputObject)
+function! kakkonan#NotCompletion(inputObject)
   return a:inputObject[1]
 endfunction
 
-function! Kakkonan#InputEnter()
+function! kakkonan#InputEnter()
   let cursorChar = s:getCursorChar(-2)
   let cursorRightChar = s:getCursorChar(-1)
 
@@ -47,7 +47,7 @@ function! Kakkonan#InputEnter()
   return "\<CR>"
 endfunction
 
-function! Kakkonan#DeleteChar()
+function! kakkonan#DeleteChar()
   let leftDelete = ['(', '{', '[', "'", '"', "`"]
   let rightDelete = [')', '}', ']', "'", '"', "`"]
 
@@ -83,7 +83,7 @@ function! Kakkonan#DeleteChar()
   return "\<BS>"
 endfunction
 
-function! Kakkonan#InputSpace()
+function! kakkonan#InputSpace()
   let leftChar = ['(', '{', '[', '"', "'", "`"]
   let rightChar = [')', '}', ']', '"', "'", "`"]
 
