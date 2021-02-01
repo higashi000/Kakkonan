@@ -13,6 +13,12 @@ function! kakkonan#Completion(inputObject)
   let compObject = [')', '}', ']', '"', "'", "`"]
   let nowArrayPos = 0
 
+  if a:inputObject == '"' || a:inputObject == "'"
+      if s:getCursorChar(-1) == a:inputObject
+          return "\<right>"
+      endif
+  endif
+
   for i in canComp
     if i == a:inputObject
       return a:inputObject.compObject[nowArrayPos]."\<left>"
