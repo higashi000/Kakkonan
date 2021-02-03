@@ -22,5 +22,9 @@ inoremap <expr> <space> kakkonan#InputSpace()
 inoremap <expr> <CR> kakkonan#InputEnter()
 inoremap <expr> <BS> kakkonan#DeleteChar()
 
+vnoremap <expr> ( kakkonan#surround#brackets()
+
+command! -range -nargs=1 KakkonanSurround :call kakkonan#surround#brackets(<f-args>)
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
