@@ -28,10 +28,6 @@ function! kakkonan#Completion(inputObject)
 
 endfunction
 
-function! kakkonan#NotCompletion(inputObject)
-  return a:inputObject[1]
-endfunction
-
 function! kakkonan#InputEnter()
   let cursorChar = s:getCursorChar(-2)
   let cursorRightChar = s:getCursorChar(-1)
@@ -87,26 +83,6 @@ function! kakkonan#DeleteChar()
   endif
 
   return "\<BS>"
-endfunction
-
-function! kakkonan#InputSpace()
-  let leftChar = ['(', '{', '[', '"', "'", "`"]
-  let rightChar = [')', '}', ']', '"', "'", "`"]
-
-  let cursorLeftChar = s:getCursorChar(-2)
-  let cursorRightChar = s:getCursorChar(-1)
-
-  let tmp = 0
-  for i in leftChar
-    if i == cursorLeftChar
-      if cursorRightChar == rightChar[tmp]
-        return "  \<left>"
-      endif
-    endif
-    let tmp += 1
-  endfor
-
-  return " "
 endfunction
 
 let &cpo = s:save_cpo
