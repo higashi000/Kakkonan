@@ -1,6 +1,15 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
+let s:brackets = {
+\ '(': ')',
+\ '{': '}',
+\ '[': ']',
+\ '"': '"',
+\ "'": "'",
+\ '`': '`',
+\ }
+
 function! s:getCursorChar(diff)
   let cursorStr = getline('.')
   let cursorCol = col('.')
@@ -9,23 +18,23 @@ function! s:getCursorChar(diff)
 endfunction
 
 function! kakkonan#Completion(inputObject)
-  let canComp = ['(', '{', '[', '"', "'", "`"]
-  let compObject = [')', '}', ']', '"', "'", "`"]
-  let nowArrayPos = 0
-
-  if a:inputObject == '"' || a:inputObject == "'"
+  if a:inputObject == '"' || a:inputObject == "'" || a:inputObject == "`"
       if s:getCursorChar(-1) == a:inputObject
           return "\<right>"
       endif
   endif
 
-  for i in canComp
-    if i == a:inputObject
-      return a:inputObject.compObject[nowArrayPos]."\<left>"
-    endif
-    let nowArrayPos += 1
-  endfor
+  if has_key(s:brackets, a:inputObject)
+      return a:inputObject.s:brackets[a:inputObject]."\<left>"
+  endif
+endfunction
 
+function! kakkonan#escapeBrackets(inputObject) abort
+    if s:getCursorChar(-1) == a:inputObject
+        return "\<right>"
+    endif
+
+    return a:inputObject
 endfunction
 
 function! kakkonan#InputEnter()
