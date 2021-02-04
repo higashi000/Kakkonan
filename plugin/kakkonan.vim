@@ -12,6 +12,10 @@ inoremap <expr> [ kakkonan#Completion('[')
 inoremap <expr> " kakkonan#Completion('"')
 inoremap <expr> ' kakkonan#Completion("'")
 inoremap <expr> ` kakkonan#Completion("`")
+inoremap <expr> ) kakkonan#escapeBrackets(')')
+inoremap <expr> } kakkonan#escapeBrackets('}')
+inoremap <expr> ] kakkonan#escapeBrackets(']')
+
 inoremap <expr> <CR> kakkonan#InputEnter()
 inoremap <expr> <BS> kakkonan#DeleteChar()
 
