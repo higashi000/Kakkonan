@@ -17,18 +17,6 @@ function! s:getCursorChar(diff)
   return cursorStr[cursorCol + a:diff]
 endfunction
 
-function! kakkonan#Completion(inputObject)
-  if a:inputObject == '"' || a:inputObject == "'" || a:inputObject == "`"
-      if s:getCursorChar(-1) == a:inputObject
-          return "\<right>"
-      endif
-  endif
-
-  if has_key(s:brackets, a:inputObject)
-      return a:inputObject.s:brackets[a:inputObject]."\<left>"
-  endif
-endfunction
-
 function! kakkonan#escapeBrackets(inputObject) abort
     if s:getCursorChar(-1) == a:inputObject
         return "\<right>"
