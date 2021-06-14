@@ -41,17 +41,7 @@ function! kakkonan#InputEnter() abort
   let cursorChar = s:getCursorChar(-2)
   let cursorRightChar = s:getCursorChar(-1)
 
-  if (cursorChar == '{' && cursorRightChar == '}')
-    return "\<CR>\<C-o>\<S-o>"
-  elseif (cursorChar == '(' && cursorRightChar == ')')
-    return "\<CR>\<C-o>\<S-o>"
-  elseif (cursorChar == '[' && cursorRightChar == ']')
-    return "\<CR>\<C-o>\<S-o>"
-  elseif (cursorChar == '"' && cursorRightChar == '"')
-    return "\<CR>\<C-o>\<S-o>"
-  elseif (cursorChar == "'" && cursorRightChar == "'")
-    return "\<CR>\<C-o>\<S-o>"
-  elseif (cursorChar == "`" && cursorRightChar == "`")
+  if has_key(s:brackets, cursorChar) && s:brackets[cursorChar] == cursorRightChar
     return "\<CR>\<C-o>\<S-o>"
   endif
 
