@@ -10,14 +10,14 @@ let s:brackets = {
 \ '`': '`',
 \ }
 
-function! s:getCursorChar(diff)
+function! s:getCursorChar(diff) abort
   let cursorStr = getline('.')
   let cursorCol = col('.')
 
   return cursorStr[cursorCol + a:diff]
 endfunction
 
-function! kakkonan#Completion(inputObject)
+function! kakkonan#Completion(inputObject) abort
   if a:inputObject == '"' || a:inputObject == "'" || a:inputObject == "`"
       if s:getCursorChar(-1) == a:inputObject
           return "\<right>"
@@ -37,7 +37,7 @@ function! kakkonan#escapeBrackets(inputObject) abort
     return a:inputObject
 endfunction
 
-function! kakkonan#InputEnter()
+function! kakkonan#InputEnter() abort
   let cursorChar = s:getCursorChar(-2)
   let cursorRightChar = s:getCursorChar(-1)
 
@@ -58,7 +58,7 @@ function! kakkonan#InputEnter()
   return "\<CR>"
 endfunction
 
-function! kakkonan#DeleteChar()
+function! kakkonan#DeleteChar() abort
   let leftDelete = ['(', '{', '[', "'", '"', "`"]
   let rightDelete = [')', '}', ']', "'", '"', "`"]
 
